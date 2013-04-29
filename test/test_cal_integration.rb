@@ -39,7 +39,10 @@ class CalTest < Test::Unit::TestCase
   def test_numbers_right_justified
   end
 
-  def test_year_divided_by_100_not_leap_year
+  def test_year_divisible_by_100_and_400_leap_year
+  end
+
+  def test_divisible_by_100_not_leap_year
   end
 
   def test_year_divided_by_400_leap_year
