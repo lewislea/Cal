@@ -6,10 +6,13 @@ class CalTest < Test::Unit::TestCase
   assert_equal `cal 2 2013`, `ruby cal.rb 2 2013`
   end
 
-  def test_number_of_days_in_week
+  def test_number_of_days_in_a_week
   end
 
-  def test_number_of_days_in_january
+  def test_month_with_30_days
+  end
+
+  def test_month_with_31_days
   end
 
   def test_number_of_days_in_february
@@ -18,40 +21,10 @@ class CalTest < Test::Unit::TestCase
   def test_number_of_days_in_february_leap_year
   end
 
-  def test_number_of_days_in_march
+  def test_what_day_is_the_first_of_month
   end
 
-  def test_number_of_days_in_april
-  end
-
-  def test_number_of_days_in_may
-  end
-
-  def test_number_of_days_in_june
-  end
-
-  def test_number_of_days_in_july
-  end
-
-  def test_number_of_days_in_august
-  end
-
-  def test_number_of_days_in_september
-  end
-
-  def test_number_of_days_in_october
-  end
-
-  def test_number_of_days_in_november
-  end
-
-  def test_number_of_days_in_december
-  end
-
-  def test_names_of_days
-  end
-
-  def test_names_of_month
+  def test_order_of_names_of_days
   end
 
   def test_month_displayed_top
@@ -75,14 +48,7 @@ class CalTest < Test::Unit::TestCase
   def test_year_divided_by_4_leap_year
   end
 
-  def test_
-  end
 
-  def test_
-  end
-
-  def test_
-  end
 
 
 
