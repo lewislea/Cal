@@ -3,6 +3,9 @@ require './cal.rb'
 
 class CalTest < Test::Unit::TestCase
 
+  def test_must_have_month_and_year
+  end
+
   def test_number_month_to_name
     cal = Cal.new(2, 2011)
     new_cal = Cal.new(3, 2011)
@@ -83,7 +86,8 @@ class CalTest < Test::Unit::TestCase
     # new_cal = Cal.new(8, 1800) #fri
     # newer_cal = Cal.new(6, 2100) #tues
     # newest_cal = Cal.new(7, 2900) #thurs
-    assert_equal "                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30\n", cal.print_month
+    expected = "                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30\n"
+    assert_equal expected , cal.print_month
 
   end
 
@@ -104,27 +108,6 @@ class CalTest < Test::Unit::TestCase
   #   # newer_cal = Cal.new(3, 2140)
   #   # newest_cal = Cal.new(6, 1900)
   #   assert_equal " 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28 29 30\n",cal.weeks_2_through_6
-  # end
-
-
-
-  # def test_order_of_names_of_days
-  #   Su < Mon == true
-  # end
-
-  # def test_number_of_days_in_february
-  # end
-
-  # def test_number_of_days_in_a_week
-  # end
-
-  # def test_first_letter_month_capitalized
-  # end
-
-  # def test_month_centered
-  # end
-
-  # def test_numbers_right_justified
   # end
 
 end

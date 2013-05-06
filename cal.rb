@@ -2,13 +2,9 @@ class Cal
   attr_reader :month
   attr_reader :year
 
-
-# puts `cal #{month} #{year}`
-
   def initialize(month, year)
     @month = month.to_i
     @year = year.to_i
-
     if @year == nil
     raise ArgumentError, "you must have a month and a year"
     end
@@ -95,7 +91,6 @@ class Cal
     when month_first_day == 6
       first_week_spaces = spaces.take(5)
     end
-    # print first_week_spaces
     first_week_spaces
   end
 
