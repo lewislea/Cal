@@ -81,16 +81,23 @@ class CalTest < Test::Unit::TestCase
   #   assert_equal "           ", newest_cal.first_week_spaces
   # end
 
-  def test_print_month
+  def test_print_month_30_days
     cal = Cal.new(4, 2400) #sat
-    # new_cal = Cal.new(8, 1800) #fri
-    # newer_cal = Cal.new(6, 2100) #tues
-    # newest_cal = Cal.new(7, 2900) #thurs
     expected = "                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30\n"
     assert_equal expected , cal.print_month
-
   end
 
+   def test_print_month_31_days
+    cal = Cal.new(8, 1800)
+    expected = "                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n"
+    assert_equal expected , cal.print_month
+  end
+
+  def test_print_month_28_days
+    cal = Cal.new(2, 2005)
+    expected = "       1  2  3  4  5\n 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28\n\n"
+    assert_equal expected , cal.print_month
+  end
   # def test_print_first_week
   #   cal = Cal.new(3, 2100) #monday
   #   new_cal = Cal.new(9, 1844) #sunday

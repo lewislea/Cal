@@ -121,11 +121,17 @@ class Cal
     weeks << "\n"
     weeks_array = weeks.each_slice(8).to_a
     joined_weeks_string = weeks_array.join(" ")
-    joined_weeks_string.slice!(22)
-    joined_weeks_string.slice!(44)
-    joined_weeks_string.slice!(66)
-    joined_weeks_string.slice!(88)
-    joined_weeks_string.slice!(110)
+    joined_weeks_string.slice!(20)
+    joined_weeks_string.slice!(21)
+    joined_weeks_string.slice!(41)
+    joined_weeks_string.slice!(42)
+    joined_weeks_string.slice!(62)
+    joined_weeks_string.slice!(63)
+    joined_weeks_string.slice!(83)
+    joined_weeks_string.slice!(84)
+    joined_weeks_string.slice!(104)
+    joined_weeks_string.slice!(105)
+    joined_weeks_string.slice!(107)
     puts joined_weeks_string
     joined_weeks_string
   end
