@@ -3,14 +3,11 @@ class Cal
   attr_reader :year
 
 
-# month = ARGV[0]
-# year = ARGV[1]
-
 # puts `cal #{month} #{year}`
 
   def initialize(month, year)
-    @month = month
-    @year = year
+    @month = month.to_i
+    @year = year.to_i
 
     if @year == nil
     raise ArgumentError, "you must have a month and a year"
@@ -76,65 +73,75 @@ class Cal
     month_year = "#{month_name} #{year}".center(20).rstrip
     days = "Su Mo Tu We Th Fr Sa"
     header = "#{month_year}\n#{days}\n"
+    print header
+    header
   end
 
-  def determines_first_line_date_spacing
+  def first_week_spaces
+    spaces = ["  ","  ","  ","  ","  ","  "]
     case
     when month_first_day == 0
-      spaces = ["                 "]
+      first_week_spaces = spaces
     when month_first_day == 1
-      spaces = ["              "]
+      first_week_spaces = nil
     when month_first_day == 2
-      spaces = ["           "]
+      first_week_spaces = spaces.take(1)
     when month_first_day == 3
-      spaces = ["        "]
+      first_week_spaces = spaces.take(2)
     when month_first_day == 4
-      spaces = ["     "]
+      first_week_spaces = spaces.take(3)
     when month_first_day == 5
-      spaces = ["    "]
+      first_week_spaces = spaces.take(4)
     when month_first_day == 6
-      spaces = []
+      first_week_spaces = spaces.take(5)
+    end
+    # print first_week_spaces
+    first_week_spaces
+  end
+
+  def days_array
+    days_31 = [" 1", " 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+    days_30 = [" 1", " 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]
+    days_29 = [" 1", " 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"]
+    days_28 = [" 1", " 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"]
+    if days_in_month == 31
+      days_31
+    elsif days_in_month == 30
+      days_30
+    elsif days_in_month == 29
+      days_29
+    else
+      days_28
     end
   end
 
-
-  def print_one_month
-    days = ["  1", "  2","  3","  4","  5","  6","  7","  8","  9"," 10"," 11"," 12"," 13"," 14"," 15"," 16"," 17"," 18"," 19"," 20"," 21"," 22"," 23"," 24"," 25"," 26"," 27"," 28"," 29"," 30"," 31"]
-    week = Array.new
-    case
-    when month.days_in_month == 31
-      while days.empty? == false
-        days.take(7) << week
-        week
-        days.drop(7)
-        week << "\n"
-      end
-    when month.days_in_month == 30
-      days.pop
-      until days.nil?
-        days.take(7) << week
-        puts week
-        days.drop(7)
-      end
-    when month.days_in_month == 29
-      days.pop(2)
-      until days.nil?
-        days.take(7) << week
-        puts week
-        days.drop(7)
-      end
-    when month.days_in_month == 28
-      days.pop(3)
-      until days.nil?
-        days.take(7) << week
-        puts week
-        days.drop(7)
-      end
-    end
-  end#print one month end
+  def print_month
+    dates = days_array.unshift(first_week_spaces)
+    weeks = dates.flatten
+    weeks.insert(7,"\n")
+    weeks.insert(15,"\n")
+    weeks.insert(23,"\n")
+    weeks.insert(31,"\n")
+    weeks.insert(39,"\n")
+    weeks << "\n"
+    weeks_array = weeks.each_slice(8).to_a
+    joined_weeks_string = weeks_array.join(" ")
+    joined_weeks_string.slice!(22)
+    joined_weeks_string.slice!(44)
+    joined_weeks_string.slice!(66)
+    joined_weeks_string.slice!(88)
+    joined_weeks_string.slice!(110)
+    puts joined_weeks_string
+    joined_weeks_string
+  end
 
 
+end #class
 
-
-
-end #class end
+if __FILE__ == $0
+  month = ARGV[0]
+  year = ARGV[1]
+  output = Cal.new(month,year)
+  output.print_one_month_header
+  output.print_month
+end
