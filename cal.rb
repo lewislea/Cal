@@ -3,17 +3,18 @@ class Cal
   attr_reader :year
 
   def initialize(month, year)
-    @month = month.to_i
-    @year = year.to_i
+      @month = month.to_i
+      @year = year.to_i
+
     raise ArgumentError, "you must have a month and a year" if @year == nil
-    puts print_one_month_header
+
     puts print_month
+
   end
 
   def month_name
     month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    long_month_name = month_names[(@month - 1)]
-    return long_month_name
+    # month_names[(@month - 1)]
   end
 
   def days_in_month
@@ -48,9 +49,9 @@ class Cal
 
   def get_zeller_year
     if get_zeller_month == 13
-      zeller_year = @year - 1
+      @year - 1
     elsif get_zeller_month == 14
-      zeller_year = @year - 1
+      @year - 1
     else
       @year
     end
@@ -62,9 +63,13 @@ class Cal
   end
 
   def print_one_month_header
-    month_year = "#{month_name} #{year}".center(20).rstrip
+    month_year = "#{month_name[@month - 1]} #{year}".center(20).rstrip
+    month_year << "\n"
+  end
+
+  def print_days
     days = "Su Mo Tu We Th Fr Sa"
-    header = "#{month_year}\n#{days}\n"
+    days << "\n"
   end
 
   def first_week_spaces
@@ -124,7 +129,7 @@ class Cal
     week_string
   end
 
-  def print_month
+  def print_month_all_weeks
     all_weeks = print_week(1), print_week(2), print_week(3), print_week(4)
 
     if print_week(5).nil?
@@ -142,6 +147,9 @@ class Cal
     all_weeks.join
   end
 
+  def print_month
+    month = print_one_month_header + print_days + print_month_all_weeks
+  end
 
 end #class
 
@@ -149,6 +157,5 @@ if __FILE__ == $0
   month = ARGV[0]
   year = ARGV[1]
   output = Cal.new(month, year)
-  output.print_one_month_header
   output.print_month
 end
